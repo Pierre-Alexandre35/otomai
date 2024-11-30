@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block title %}Rentals{% endblock %} {% block
+content %}
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Rentals</h2>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead class="table-primary">
+        <tr>
+          <th>#</th>
+          <th>Surface</th>
+          <th>Rooms</th>
+          <th>Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for rental in rentals %}
+        <tr
+          onclick="window.location='{{ url_for('rentals.view_rental', rental_id=rental.id) }}'"
+          style="cursor: pointer"
+        >
+          <td>{{ loop.index }}</td>
+          <td>{{ rental.surface }}</td>
+          <td>{{ rental.rooms }}</td>
+          <td>{{ rental.address }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

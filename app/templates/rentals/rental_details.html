@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block title %}Rental Details{% endblock %} {% block
+content %}
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Rental Details</h2>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Address: {{ rental.address }}</h5>
+      <p class="card-text">
+        <strong>Surface:</strong> {{ rental.surface }} m²<br />
+        <strong>Rooms:</strong> {{ rental.rooms }}
+      </p>
+      <a
+        href="{{ url_for('rentals_blueprint.list_contacts') }}"
+        class="btn btn-primary"
+        >Back to Rentals</a
+      >
+    </div>
+  </div>
+</div>
+{% endblock %}
