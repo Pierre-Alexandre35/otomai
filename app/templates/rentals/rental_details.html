@@ -1,20 +1,18 @@
 {% extends "base.html" %} {% block title %}Rental Details{% endblock %} {% block
 content %}
-<div class="container mt-4">
-  <h2 class="text-center mb-4">Rental Details</h2>
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Address: {{ rental.address }}</h5>
-      <p class="card-text">
-        <strong>Surface:</strong> {{ rental.surface }} m²<br />
-        <strong>Rooms:</strong> {{ rental.rooms }}
-      </p>
-      <a
-        href="{{ url_for('rentals_blueprint.list_contacts') }}"
-        class="btn btn-primary"
-        >Back to Rentals</a
-      >
-    </div>
-  </div>
-</div>
+<h1>Rental Details</h1>
+<p><strong>ID:</strong> {{ rental.id }}</p>
+<p><strong>Surface:</strong> {{ rental.surface }} sqm</p>
+<p><strong>Rooms:</strong> {{ rental.rooms }}</p>
+<p><strong>Address:</strong> {{ rental.address }}</p>
+
+<h2>Tenant Name</h2>
+<p>
+  {% if rental.tenant %} {{ rental.tenant.first_name }} {{
+  rental.tenant.last_name }} {% else %} No Tenant {% endif %}
+</p>
+
+<a href="{{ url_for('rentals.list_rentals') }}" class="btn btn-secondary"
+  >Back to Rentals List</a
+>
 {% endblock %}

@@ -1,32 +1,37 @@
-{% extends "base.html" %} {% block title %}Rentals{% endblock %} {% block
+{% extends "base.html" %} {% block title %}Rentals List{% endblock %} {% block
 content %}
-<div class="container mt-4">
-  <h2 class="text-center mb-4">Rentals</h2>
-
-  <div class="table-responsive">
-    <table class="table table-bordered table-hover">
-      <thead class="table-primary">
-        <tr>
-          <th>#</th>
-          <th>Surface</th>
-          <th>Rooms</th>
-          <th>Address</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for rental in rentals %}
-        <tr
-          onclick="window.location='{{ url_for('rentals.view_rental', rental_id=rental.id) }}'"
-          style="cursor: pointer"
+<h1>Rentals List</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Rental ID</th>
+      <th>Surface (sqm)</th>
+      <th>Rooms</th>
+      <th>Address</th>
+      <th>Tenant Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for rental in rentals %}
+    <tr>
+      <td>{{ rental.id }}</td>
+      <td>{{ rental.surface }}</td>
+      <td>{{ rental.rooms }}</td>
+      <td>{{ rental.address }}</td>
+      <td>
+        {% if rental.tenant %} {{ rental.tenant.first_name }} {{
+        rental.tenant.last_name }} {% else %} No Tenant {% endif %}
+      </td>
+      <td>
+        <a
+          href="{{ url_for('rentals.view_rental', rental_id=rental.id) }}"
+          class="btn btn-primary"
+          >View Details</a
         >
-          <td>{{ loop.index }}</td>
-          <td>{{ rental.surface }}</td>
-          <td>{{ rental.rooms }}</td>
-          <td>{{ rental.address }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-</div>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}

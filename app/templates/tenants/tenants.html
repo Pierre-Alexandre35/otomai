@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block title %}Tenants{% endblock %} {% block
+content %}
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Tenants</h2>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead class="table-primary">
+        <tr>
+          <th>#</th>
+          <th>first_name</th>
+          <th>last_name</th>
+          <th>phone</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tenant in tenants %}
+        <tr
+          onclick="window.location='{{ url_for('tenants.view_tenant', tenant_id=tenant.id) }}'"
+          style="cursor: pointer"
+        >
+          <td>{{ loop.index }}</td>
+          <td>{{ tenant.first_name }}</td>
+          <td>{{ tenant.last_name }}</td>
+          <td>{{ tenant.phone }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -4,7 +4,7 @@ from app.models.rentals import Rental
 
 
 @rentals_blueprint.route("/", methods=["GET", "POST"])
-def list_contacts():
+def list_rentals():
     rentals_list = Rental.query.all()
     return render_template("rentals/rentals.html", rentals=rentals_list)
 
@@ -12,4 +12,4 @@ def list_contacts():
 @rentals_blueprint.route("/<int:rental_id>", methods=["GET"])
 def view_rental(rental_id):
     rental = Rental.query.get_or_404(rental_id)
-    return render_template("rentals/rental_detail.html", rental=rental)
+    return render_template("rentals/rental_details.html", rental=rental)
