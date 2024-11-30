@@ -1,0 +1,47 @@
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+
+# Flask specific files
+instance/
+*.log
+
+# IDE configurations
+.vscode/
+.idea/
+
+# Python virtual environment dependency files
+*.egg-info/
+.eggs/
+.Python
+
+# Environment variables
+.env
+.env.*
+
+# Cache files
+*.cache
+*.pyc
+
+# Flask-WTF file uploads
+uploads/
+
+# Static assets
+staticfiles/
+static/
+media/
+
+# Flask migrations
+migrations/
+
+# Jinja2 cache
+.jinja_cache/
+
+# Other
+*.swp
+.DS_Store
