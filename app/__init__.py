@@ -35,3 +35,18 @@ def create_app(config_class="config.Config"):
             return redirect(url_for("auth.login"))
 
     return app
+
+
+def register_error_handlers(app):
+    @app.errorhandler(404)
+    def not_found_error(error):
+        return render_template("errors/404.html"), 404
+
+    @app.errorhandler(500)
+    def internal_error(error):
+        db.session.rollback()  # Rollback any failed database transactions
+        return render_template("errors/500.html"), 500
+
+    @app.errorhandler(403)
+    def not_authorized(error):
+        return render_template("errors/403.html"), 403

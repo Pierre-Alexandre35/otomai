@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block title %} Erreur 404 - Page introuvable {%
+endblock %} {% block content %}
+<div class="error-page">
+  <h1>Erreur 404</h1>
+  <p>La page que vous cherchez semble introuvable.</p>
+  <p>
+    <a href="/" class="btn btn-primary">Retour à l'accueil</a>
+    ou
+    <a href="javascript:history.back()" class="btn btn-secondary"
+      >Revenir à la page précédente</a
+    >
+  </p>
+</div>
+{% endblock %}

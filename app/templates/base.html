@@ -42,13 +42,33 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav me-auto">
             <li class="nav-item">
               <a class="nav-link active" href="{{ url_for('main.home') }}"
                 >Home</a
               >
             </li>
-            <li class="nav-item"></li>
+          </ul>
+          <ul class="navbar-nav">
+            {% if current_user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                Welcome, {{ current_user.email }}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.register') }}"
+                >Register</a
+              >
+            </li>
+            {% endif %}
           </ul>
         </div>
       </div>
