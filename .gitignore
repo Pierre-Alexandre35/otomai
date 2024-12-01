@@ -42,9 +42,6 @@ static/
 media/
 *.scssc
 
-# Flask migrations
-migrations/
-
 # Test coverage
 htmlcov/
 .coverage
