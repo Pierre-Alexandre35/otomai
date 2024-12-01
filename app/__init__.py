@@ -21,7 +21,7 @@ def create_app(config_class="config.Config"):
     app.register_blueprint(rentals_blueprint)
     app.register_blueprint(tenants_blueprint)
     app.register_blueprint(auth_blueprint)
-
+    register_error_handlers(app)
     login_manager.login_view = "auth.login"
 
     @app.before_request
