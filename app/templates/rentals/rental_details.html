@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% block title %}Rental Details{% endblock %} {% block
+content %}
+<h1>Rental Details</h1>
+<p><strong>ID:</strong> {{ rental.id }}</p>
+<p><strong>Surface:</strong> {{ rental.surface }} sqm</p>
+<p><strong>Rooms:</strong> {{ rental.rooms }}</p>
+<p><strong>Address:</strong> {{ rental.address }}</p>
+
+<h2>Tenant Name</h2>
+<p>
+  {% if rental.tenant %} {{ rental.tenant.first_name }} {{
+  rental.tenant.last_name }} {% else %} No Tenant {% endif %}
+</p>
+
+<a href="{{ url_for('rentals.list_rentals') }}" class="btn btn-secondary"
+  >Back to Rentals List</a
+>
+{% endblock %}

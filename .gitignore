@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyo
 
 # Virtual environment
 venv/
@@ -10,10 +11,13 @@ env/
 # Flask specific files
 instance/
 *.log
+*.db
+*.sqlite3
 
 # IDE configurations
 .vscode/
 .idea/
+.tmproj
 
 # Python virtual environment dependency files
 *.egg-info/
@@ -27,6 +31,7 @@ instance/
 # Cache files
 *.cache
 *.pyc
+.jinja_cache/
 
 # Flask-WTF file uploads
 uploads/
@@ -35,13 +40,19 @@ uploads/
 staticfiles/
 static/
 media/
+*.scssc
 
 # Flask migrations
 migrations/
 
-# Jinja2 cache
-.jinja_cache/
+# Test coverage
+htmlcov/
+.coverage
 
-# Other
-*.swp
+# Temporary and backup files
+*~
+*.bak
+
+# System-specific files
+Thumbs.db
 .DS_Store
