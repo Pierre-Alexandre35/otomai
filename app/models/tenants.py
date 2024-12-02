@@ -18,5 +18,11 @@ class Tenant(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     user = db.relationship("User", back_populates="tenants")
 
+    # New column to store GCS path
+    gcs_path = db.Column(db.String(255), nullable=True)
+
     def __repr__(self):
-        return f"<Tenant id={self.id}, first_name={self.first_name}, last_name={self.last_name}>"
+        return (
+            f"<Tenant id={self.id}, first_name={self.first_name}, "
+            f"last_name={self.last_name}, gcs_path={self.gcs_path}>"
+        )
