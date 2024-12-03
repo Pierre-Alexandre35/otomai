@@ -10,6 +10,7 @@ from flask_login import current_user
 def create_app(config_class="config.Config"):
     app = Flask(__name__)
     app.config.from_object(config_class)
+    print(f"Connecting to database: {app.config['SQLALCHEMY_DATABASE_URI']}")
 
     # Initialize extensions
     db.init_app(app)
