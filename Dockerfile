@@ -1,21 +1,27 @@
-# Step 1: Use a base image with Python
+# Use an official Python runtime as a parent image
 FROM python:3.12-slim
 
-# Step 2: Set the working directory in the container
+# Set the working directory in the container
 WORKDIR /app
 
-# Step 3: Copy the pyproject.toml and poetry.lock to the container
+# Install Poetry
+RUN apt-get update && apt-get install -y curl && \
+    curl -sSL https://install.python-poetry.org | python3 - && \
+    ln -s /root/.local/bin/poetry /usr/local/bin/poetry && \
+    apt-get remove -y curl && apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy only the necessary files for Poetry installation
 COPY pyproject.toml poetry.lock /app/
 
-# Step 4: Install Poetry and dependencies
-RUN pip install --no-cache-dir poetry \
-    && poetry install --no-root --no-dev
+# Install dependencies using Poetry
+RUN poetry config virtualenvs.create false && poetry install --no-root --no-dev
 
-# Step 5: Copy the rest of the application code into the container
-COPY . /app/
+# Copy the application files into the container
+COPY . /app
 
-# Step 6: Expose the port that Flask will run on (default is 5000)
-EXPOSE 5000
+# Expose a port if your app runs on a specific port (e.g., 8000)
+EXPOSE 8000
 
-# Step 7: Set the command to run the Flask application
-CMD ["poetry", "run", "flask", "run", "--host=0.0.0.0"]
+# Command to run your application
+CMD ["python", "run.py"]

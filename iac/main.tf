@@ -73,3 +73,41 @@ output "postgres_external_ip" {
   value = google_compute_instance.postgres_instance.network_interface[0].access_config[0].nat_ip
   description = "External IP address of the PostgreSQL instance"
 }
+
+resource "google_cloud_run_service" "cloud_run_psql" {
+  name     = "cloud-run-psql-app"
+  location = var.region
+
+  template {
+    spec {
+      containers {
+        image = "gcr.io/${var.project_id}/cloud-run-psql-app" # Update with your container image
+        env {
+          name  = "POSTGRES_HOST"
+          value = google_compute_instance.postgres_instance.network_interface[0].access_config[0].nat_ip
+        }
+        env {
+          name  = "POSTGRES_PORT"
+          value = "5432"
+        }
+        env {
+          name  = "POSTGRES_USER"
+          value = "postgres"
+        }
+        env {
+          name  = "POSTGRES_PASSWORD"
+          value = "your-secure-password"
+        }
+        env {
+          name  = "POSTGRES_DB"
+          value = "postgres" # Default database
+        }
+      }
+    }
+  }
+
+  traffic {
+    percent         = 100
+    latest_revision = true
+  }
+}
